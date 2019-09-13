@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, FlatList, Image, StyleSheet,AsyncStorage } from 'react-native'
+import { Text, View, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import User from '../screens/auth/userdata'
 import firebase from 'firebase'
 import { withNavigation } from 'react-navigation'
 
+console.ignoredYellowBox = ['Setting a timer for a long period']
 
 class FlatListItem extends Component {
     render() {
@@ -19,7 +21,7 @@ class FlatListItem extends Component {
                     </View>
                     <View style={styles.content}>
                         <Text style={styles.TextName}>{this.props.item.name}</Text>
-                        <Text style={styles.TexContent}>{this.props.item.content}</Text>
+                        <Text style={styles.TexContent}>{this.props.item.status}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -57,6 +59,7 @@ class Friend extends Component {
                 <FlatList
                     data={this.state.user}
                     numColumns={1}
+                    horizontal={false}
                     renderItem={({ item, index }) => {
                         return (
                             <FlatListItem navigation={this.props.navigation} item={item} index={index}>
@@ -84,6 +87,8 @@ const styles = StyleSheet.create({
     parenImage: {
         flex: 1,
         justifyContent: 'center',
+        marginTop: 5,
+        marginBottom: 5
     },
     image: {
         width: 50,

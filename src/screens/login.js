@@ -3,9 +3,9 @@ import {
   StyleSheet,
   View,
   Image,
-  AsyncStorage,
   ActivityIndicator
 } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 import {
   Content,
   Text,
@@ -36,7 +36,7 @@ class Login extends Component {
       .then(async result => {
         console.log("result", result);
 
-        await AsyncStorage.setItem("uid", result.user.uid);
+        await AsyncStorage.setItem("uid", result.user.uid)
         AsyncStorage.getItem("uid", (err, result) => {
           console.log("result2", result);
           if (result) {

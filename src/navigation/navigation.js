@@ -5,7 +5,9 @@ import Login from "../screens/login";
 import Register from "../screens/register";
 import Home from "../screens/home";
 import AuthLoadingScreen from "../screens/auth/authLoading";
-import DetailFriend from "../components/detailfriend"
+import DetailFriend from "../components/detailfriend";
+import DetailChat from "../components/detailchat";
+import Profile from '../components/profile'
 
 const stackAfterLogin = createStackNavigator(
   {
@@ -14,6 +16,12 @@ const stackAfterLogin = createStackNavigator(
     },
     DetailFriend: {
         screen: DetailFriend
+    },
+    DetailChat: {
+      screen: DetailChat
+    },
+    Profile: {
+      screen: Profile
     }
   },
   {

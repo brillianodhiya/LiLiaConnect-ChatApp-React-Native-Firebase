@@ -5,14 +5,14 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  StyleSheet,
-  AsyncStorage
+  StyleSheet
 } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 import User from "../screens/auth/userdata";
 import firebase from "firebase";
 import { withNavigation } from "react-navigation";
 
-console.ignoredYellowBox = ['Setting a timer']
+console.ignoredYellowBox = ['Setting a timer for a long period']
 
 class FlatListItem extends Component {
   render() {
@@ -20,7 +20,7 @@ class FlatListItem extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate("detailChat", this.props.item);
+            this.props.navigation.navigate("DetailChat", this.props.item);
           }}
           style={styles.button}
         >
@@ -32,7 +32,9 @@ class FlatListItem extends Component {
           </View>
           <View style={styles.content}>
             <Text style={styles.TextName}>{this.props.item.name}</Text>
+            
             <Text style={styles.TexContent}>{this.props.item.content}</Text>
+
           </View>
         </TouchableOpacity>
       </View>
@@ -91,34 +93,36 @@ class Chat extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    flexDirection: "row",
-    paddingHorizontal: 4,
-    borderBottomWidth: 1,
-    borderColor: "#c4c4c4",
-    margin: 4
+      flexDirection: 'row',
+      paddingHorizontal: 4,
+      borderBottomWidth: 1,
+      borderColor: '#c4c4c4',
+      margin: 4,
   },
   container: {
-    flex: 1
+      flex: 1
   },
   parenImage: {
-    flex: 1,
-    justifyContent: "center"
+      flex: 1,
+      justifyContent: 'center',
+      marginTop: 5,
+      marginBottom: 5
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 100
+      width: 50,
+      height: 50,
+      borderRadius: 100,
   },
   content: {
-    flex: 4,
-    paddingLeft: 17
+      flex: 4,
+      paddingLeft: 17,
   },
   TexContent: {
-    fontSize: 13
+      fontSize: 13,
   },
   TextName: {
-    fontSize: 17,
-    color: "#1c1c1c"
+      fontSize: 17,
+      color: "#1c1c1c"
   }
 });
 
