@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import MapView, { Marker } from "react-native-maps";
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from "react-native-geolocation-service";
 import firebase from "firebase";
 import User from "../screens/auth/userdata";
 import { withNavigation } from "react-navigation";
@@ -28,10 +28,10 @@ class Maps extends Component {
   constructor(props) {
     super(props);
     (this.state = {
-      longitude: '',
-      latitude: '',
+      longitude: "",
+      latitude: "",
       data: [],
-      modalVisible: false,
+      modalVisible: false
     }),
       this.getLocation();
   }
@@ -49,27 +49,23 @@ class Maps extends Component {
     );
   };
 
-    updateLocation = async() =>{
-        if (this.state.latitude) {
-            await firebase.database().ref('user/'+ User.uid).update({
-                latitude: this.state.latitude,
-                longitude: this.state.longitude
-            })
-        }
-    }
-
-  UNSAFE_componentWillMount() {
-    this.index = 0;
-    this.animation = new Animated.Value(0);
-  }
+  // updateLocation = async() =>{
+  //     if (this.state.latitude) {
+  //         await firebase.database().ref('user/'+ User.uid).update({
+  //             latitude: this.state.latitude,
+  //             longitude: this.state.longitude
+  //         })
+  //     }
+  // }
 
   componentDidMount() {
+    this.animation = new Animated.Value(0);
     firebase
       .database()
-      .ref('user')
-      .on('value', data => {
+      .ref("user")
+      .on("value", data => {
         let values = data.val();
-        console.log(values)
+        console.log(values);
         if (values) {
           const messageList = Object.keys(values).map(key => ({
             ...values[key],
@@ -81,7 +77,7 @@ class Maps extends Component {
         }
       });
     this.animation.addListener(({ value }) => {
-      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
+      let index = Math.floor(value / CARD_WIDTH + 0.3);
       if (index >= this.state.data.length) {
         index = this.state.data.length - 1;
       }
@@ -105,14 +101,15 @@ class Maps extends Component {
           );
         }
       }, 10);
-      getLocation = async () => {
-        Geolocation.getCurrentPosition(info => {
-          this.setState({
-            latitude: info.coords.latitude,
-            longitude: info.coords.longitude
-          });
-        });
-      };
+      // getLocation = async () => {
+      //   Geolocation.getCurrentPosition(info => {
+      //     this.setState({
+      //       latitude: info.coords.latitude,
+      //       longitude: info.coords.longitude
+      //     });
+      //   });
+      // };
+
       updateLocation = async () => {
         AsyncStorage.getItem("uid", (error, result) => {
           if (result) {
@@ -123,7 +120,8 @@ class Maps extends Component {
                 .ref("user/" + result)
                 .update({
                   latitude: this.state.latitude,
-                  longitude: this.state.longitude
+                  longitude: this.state.longitude,
+                  status: "online"
                 });
             }
           }
@@ -134,7 +132,7 @@ class Maps extends Component {
 
   render() {
     if (this.state.latitude) {
-        this.updateLocation()
+      this.updateLocation();
       return (
         <View style={styles.container}>
           <View style={styles.container}>

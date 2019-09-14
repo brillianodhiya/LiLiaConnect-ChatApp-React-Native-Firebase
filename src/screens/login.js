@@ -52,6 +52,20 @@ class Login extends Component {
       });
   };
 
+  onGoogleLogin = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then( result => {
+        let token = result.credential.accessToken
+        let user = result.user
+
+        console.warn(token)
+      })
+      .catch( error => {
+        console.warn(error.message)
+      })
+  }
+
   render() {
     return (
       <View style={styles.root}>
