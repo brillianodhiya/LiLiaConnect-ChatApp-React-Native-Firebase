@@ -5,6 +5,20 @@
 > This app is created using react-native and firebase
 > I've released this to apk in this [link](https://drive.google.com/file/d/1sbhWxPB94RSRiMrZM90EXZzdvjR2Tk6C/view?usp=sharing)
 
+## Features
+
+* Realtime chat using firebase
+* Show location of your friends
+* Show list friend
+* Show Profile
+
+## Used Technology
+
+* [React-Native](https://facebook.github.io/react-native/)
+* [Firebase](https://console.firebase.google.com)
+* [NativeBase](https://nativebase.io/)
+* [Maps API](https://cloud.google.com/maps-platform/)
+
 ## How to run this app locally
 
 * Clone this Repository
